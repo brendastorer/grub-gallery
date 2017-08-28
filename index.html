@@ -1,0 +1,26 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Grub Gallery</title>
+    <meta name="description" content=""/>
+    <link href="reset.css" rel="stylesheet" type="text/css" />
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <main role="main">
+
+      <form class="search-form js-search-form">
+        <label for="search">Enter a city name</label>
+        <input type="text" name="search" id="search" class="js-search-input search-form__input">
+        <button type="submit">Search</button>
+      </form>
+      <ul class="search-results js-search-results" aria-live="assertive" hidden>
+      </ul>
+
+    </main>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts.js"></script>
+  </body>
+</html>
