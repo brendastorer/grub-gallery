@@ -1,20 +1,22 @@
 const FOURSQUARE_SEARCH_URL = "https://api.foursquare.com/v2/venues/explore";
 const FOURSQUARE_CLIENT_ID = "IZYP4O4X12IIUAWFET4VWM0CG1WVWS4VJTMCVU3RMVORDRGJ";
 const FOURSQUARE_CLIENT_SECRET = "TV3AXUBEPXUDCCOF5FAH0G4GOJHFGYGKERFS2UXASA5ZFQM0";
+const FOURSQUARE_API_BEFORE_THIS_DATE = 20170823;
 const RESULTS_CONTAINER = $(".js-search-results");
 const SEARCH_FORM = $(".js-search-form");
 
 function getDataFromApi(searchTerm, callback) {
   const query = {
-    limit: 5,
+    limit: 10,
     section: "food",
     near: searchTerm,
     venuePhotos: 1,
     m: "foursquare",
-    v: 20170823,
+    v: FOURSQUARE_API_BEFORE_THIS_DATE,
     client_id: FOURSQUARE_CLIENT_ID,
     client_secret: FOURSQUARE_CLIENT_SECRET
   }
+
   const result = $.getJSON(FOURSQUARE_SEARCH_URL, query, callback).fail(renderError);
 }
 
@@ -24,10 +26,11 @@ function getVenueResults(data) {
 
     const query = {
       m: "foursquare",
-      v: 20170823,
+      v: FOURSQUARE_API_BEFORE_THIS_DATE,
       client_id: FOURSQUARE_CLIENT_ID,
       client_secret: FOURSQUARE_CLIENT_SECRET
     }
+
     const venueInfo = $.getJSON(foursquareVenueUrl, query, renderResult).fail(renderError);
   });
 }
@@ -38,26 +41,32 @@ function renderError(error) {
   const errorCopy = errorResponsePath.errorDetail;
 
   const errorMessage = (
-    ` <p>Sorry, something went wrong.</p>
-      <p>Error Type: ${errorCode}, ${errorCopy}</p>
+    ` <li class="search-results__error">
+        <p>Sorry, something went wrong.</p>
+        <p>Error ${errorCode}, ${errorCopy}</p>
+      </li>
     `
   );
 
-  clearResults();
   RESULTS_CONTAINER.append(errorMessage);
 }
 
 function renderResult(venueData) {
   const responsePath = venueData.response.venue;
-  const venuePhoto = `${responsePath.bestPhoto.prefix}300x300${responsePath.bestPhoto.suffix}`;
+  const venuePhoto = `${responsePath.bestPhoto.prefix}500x500${responsePath.bestPhoto.suffix}`;
   const venueName = responsePath.name;
   const venueLink = responsePath.canonicalUrl;
 
-  RESULTS_CONTAINER.append(`
-    <a href="${venueLink}" target="_blank">
-      <img class="search-results__thumbnail" src="${venuePhoto}" alt="${venueName}" />
-    </a>
-  `);
+  const venueResults = (
+    ` <li>
+        <a class="search-results__link" href="${venueLink}" target="_blank">
+          <img class="search-results__photo" src="${venuePhoto}" alt="${venueName}" />
+        </a>
+      </li>
+    `
+  );
+
+  RESULTS_CONTAINER.append(venueResults);
 }
 
 function clearInput(input) {

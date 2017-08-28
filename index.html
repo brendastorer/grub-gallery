@@ -8,16 +8,24 @@
     <link href="styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <main role="main">
+    <header class="site-header">
+      <h1>Grub Gallery</h1>
+      <h2>
+        Find visual inspiration for your next gastronimic adventure with real customer photos from popular eateries
+      </h2>
+      <p>
+        Powered by Foursquare
+      </p>
+    </header>
 
+    <main role="main">
       <form class="search-form js-search-form">
-        <label for="search">Enter a city name</label>
+        <label for="search">Enter a city</label>
         <input type="text" name="search" id="search" class="js-search-input search-form__input">
         <button type="submit">Search</button>
       </form>
       <ul class="search-results js-search-results" aria-live="assertive" hidden>
       </ul>
-
     </main>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
