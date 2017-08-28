@@ -15,6 +15,7 @@ function getDataFromApi(searchTerm, callback) {
     client_id: FOURSQUARE_CLIENT_ID,
     client_secret: FOURSQUARE_CLIENT_SECRET
   }
+
   const result = $.getJSON(FOURSQUARE_SEARCH_URL, query, callback).fail(renderError);
 }
 
@@ -28,6 +29,7 @@ function getVenueResults(data) {
       client_id: FOURSQUARE_CLIENT_ID,
       client_secret: FOURSQUARE_CLIENT_SECRET
     }
+
     const venueInfo = $.getJSON(foursquareVenueUrl, query, renderResult).fail(renderError);
   });
 }
@@ -38,26 +40,32 @@ function renderError(error) {
   const errorCopy = errorResponsePath.errorDetail;
 
   const errorMessage = (
-    ` <p>Sorry, something went wrong.</p>
-      <p>Error Type: ${errorCode}, ${errorCopy}</p>
+    ` <li class="search-results__error">
+        <p>Sorry, something went wrong.</p>
+        <p>Error ${errorCode}, ${errorCopy}</p>
+      </li>
     `
   );
 
-  clearResults();
   RESULTS_CONTAINER.append(errorMessage);
 }
 
 function renderResult(venueData) {
   const responsePath = venueData.response.venue;
-  const venuePhoto = `${responsePath.bestPhoto.prefix}300x300${responsePath.bestPhoto.suffix}`;
+  const venuePhoto = `${responsePath.bestPhoto.prefix}500x500${responsePath.bestPhoto.suffix}`;
   const venueName = responsePath.name;
   const venueLink = responsePath.canonicalUrl;
 
-  RESULTS_CONTAINER.append(`
-    <a href="${venueLink}" target="_blank">
-      <img class="search-results__thumbnail" src="${venuePhoto}" alt="${venueName}" />
-    </a>
-  `);
+  const venueResults = (
+    ` <li>
+        <a class="search-results__link" href="${venueLink}" target="_blank">
+          <img class="search-results__photo" src="${venuePhoto}" alt="${venueName}" />
+        </a>
+      </li>
+    `
+  );
+
+  RESULTS_CONTAINER.append(venueResults);
 }
 
 function clearInput(input) {
