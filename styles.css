@@ -30,6 +30,11 @@ input[type="text"] {
   width: 100%;
 }
 
+input[type="text"]::placeholder {
+  color: #ccc;
+  font-style: italic;
+}
+
 input[type="text"]:focus {
   border-color: #5270b6;
   outline: none;
@@ -84,6 +89,15 @@ h2 {
   padding-left: 2rem;
   padding-right: 2rem;
   text-align: center;
+}
+
+.search-form__error-message {
+  color: #d24850;
+  font-style: italic;
+}
+
+.search-form__input.error {
+  border-color: #d24850;
 }
 
 .search-results {

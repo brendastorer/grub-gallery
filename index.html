@@ -20,14 +20,16 @@
 
     <main role="main">
       <form class="search-form js-search-form">
-        <label for="search">Enter a city</label>
-        <input type="text" name="search" id="search" class="js-search-input search-form__input">
+        <label for="search">Enter a street address, city name, or landmark</label>
+        <input type="text" name="search" id="search" class="js-search-input search-form__input" placeholder='e.g. "New York", "405 Lexington Avenue, NY", "Chrysler Building"'>
         <button type="submit">Search</button>
       </form>
+      <header class="results-header js-results-header" aria-live="assertive" hidden>
+      </header>
       <ul class="search-results js-search-results" aria-live="assertive" hidden>
       </ul>
     </main>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="scripts.js"></script>
   </body>

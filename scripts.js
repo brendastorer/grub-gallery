@@ -2,12 +2,14 @@ const FOURSQUARE_SEARCH_URL = "https://api.foursquare.com/v2/venues/explore";
 const FOURSQUARE_CLIENT_ID = "IZYP4O4X12IIUAWFET4VWM0CG1WVWS4VJTMCVU3RMVORDRGJ";
 const FOURSQUARE_CLIENT_SECRET = "TV3AXUBEPXUDCCOF5FAH0G4GOJHFGYGKERFS2UXASA5ZFQM0";
 const FOURSQUARE_API_BEFORE_THIS_DATE = 20170823;
+const RESULTS_HEADER = $(".js-results-header");
 const RESULTS_CONTAINER = $(".js-search-results");
 const SEARCH_FORM = $(".js-search-form");
+const SEARCH_INPUT = $(".js-search-input");
 
 function getDataFromApi(searchTerm, callback) {
   const query = {
-    limit: 10,
+    limit: 20,
     section: "food",
     near: searchTerm,
     venuePhotos: 1,
@@ -21,6 +23,9 @@ function getDataFromApi(searchTerm, callback) {
 }
 
 function getVenueResults(data) {
+  const searchLocation = data.response.geocode.displayString;
+  renderSearchLocation(searchLocation);
+
   data.response.groups[0].items.forEach(function(item) {
     const foursquareVenueUrl = `https://api.foursquare.com/v2/venues/${item.venue.id}`;
 
@@ -33,6 +38,13 @@ function getVenueResults(data) {
 
     const venueInfo = $.getJSON(foursquareVenueUrl, query, renderResult).fail(renderError);
   });
+}
+
+function emptyValue() {
+  SEARCH_INPUT.addClass("error").after(
+    `<p class="search-form__error-message js-input-error">Search box can't be empty.</p>
+    `
+  );
 }
 
 function renderError(error) {
@@ -49,6 +61,14 @@ function renderError(error) {
   );
 
   RESULTS_CONTAINER.append(errorMessage);
+}
+
+function renderSearchLocation(location) {
+  const title = (
+    ` <h2>${location}</h2>`
+  );
+
+  RESULTS_HEADER.empty().prop("hidden", false).append(title);
 }
 
 function renderResult(venueData) {
@@ -80,12 +100,19 @@ function clearResults() {
 function watchSubmit() {
   SEARCH_FORM.submit(event => {
     event.preventDefault();
-    const queryTarget = $(event.currentTarget).find(".js-search-input");
+    const queryTarget = $(event.currentTarget).find(SEARCH_INPUT);
     const query = queryTarget.val();
 
-    clearResults();
-    clearInput(queryTarget);
-    getDataFromApi(query, getVenueResults);
+    if (query == "") {
+      emptyValue();
+    }
+    else {
+      SEARCH_INPUT.removeClass("error");
+      $(".js-input-error").remove();
+      clearResults();
+      clearInput(queryTarget);
+      getDataFromApi(query, getVenueResults);
+    }
   });
 }
 
