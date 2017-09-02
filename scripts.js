@@ -7,6 +7,11 @@ const RESULTS_CONTAINER = $(".js-search-results");
 const SEARCH_FORM = $(".js-search-form");
 const SEARCH_INPUT = $(".js-search-input");
 
+window.addEventListener("touchstart", function onFirstTouch() {
+  document.body.classList.add("touch-user");
+  window.removeEventListener("touchstart", onFirstHover, false);
+}, false);
+
 function getDataFromApi(searchTerm, callback) {
   const query = {
     limit: 24,

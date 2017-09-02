@@ -1,4 +1,4 @@
-/*
+/* COLORS CHEAT SHEET
   primary accent: rgb(22, 160, 133)
   secondary accent: rgb(241, 196, 15)
   error color: rgb(231, 76, 60)
@@ -121,6 +121,10 @@ h2 {
   font-size: 1.2rem;
 }
 
+p {
+  font-size: 0.8rem;
+}
+
 .site-header {
   padding: 1rem;
 }
@@ -149,10 +153,6 @@ h2 {
 
 .site-header__headline {
   margin-top: 25px;
-}
-
-.site-header p {
-  font-size: 0.8rem;
 }
 
 .search-form {
@@ -269,6 +269,11 @@ h2 {
   right: 0;
   top: 0;
   transition: opacity 100ms ease;
+}
+
+.touch-user .search-results__link {
+  opacity: 1;
+  position: static;
 }
 
 .search-results__link:focus,
