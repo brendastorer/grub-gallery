@@ -9,7 +9,7 @@ const SEARCH_INPUT = $(".js-search-input");
 
 function getDataFromApi(searchTerm, callback) {
   const query = {
-    limit: 20,
+    limit: 10,
     section: "food",
     near: searchTerm,
     venuePhotos: 1,
@@ -65,7 +65,7 @@ function renderError(error) {
 
 function renderSearchLocation(location) {
   const title = (
-    ` <h2>${location}</h2>`
+    ` <h2 class="results-header__title">${location}</h2>`
   );
 
   RESULTS_HEADER.empty().prop("hidden", false).append(title);

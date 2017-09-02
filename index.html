@@ -9,20 +9,24 @@
   </head>
   <body>
     <header class="site-header">
-      <h1>Grub Gallery</h1>
-      <h2>
-        Find visual inspiration for your next gastronimic adventure with real customer photos from popular eateries
-      </h2>
-      <p>
-        Powered by Foursquare
-      </p>
+      <img src="images/grub-gallery-logo.svg" alt="Grub Gallery" class="site-header__logo">
+      <div class="site-header__headline">
+        <h1>
+          Photo inspiration for your next gastronomic adventure
+        </h1>
+        <p>
+          Powered by Foursquare
+        </p>
+      </div>
     </header>
 
     <main role="main">
       <form class="search-form js-search-form">
-        <label for="search">Enter a street address, city name, or landmark</label>
-        <input type="text" name="search" id="search" class="js-search-input search-form__input" placeholder='e.g. "New York", "405 Lexington Avenue, NY", "Chrysler Building"'>
-        <button type="submit">Search</button>
+        <label class="search-form__label" for="search">Enter a street address, city name, or landmark</label>
+        <div class="search-form__input-container">
+          <input type="text" name="search" id="search" class="js-search-input search-form__input" placeholder='e.g. "New York", "405 Lexington Avenue, NY", "Chrysler Building"'>
+          <button type="submit" class="search-form__button">Search</button>
+        </div>
       </form>
       <header class="results-header js-results-header" aria-live="assertive" hidden>
       </header>
