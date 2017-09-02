@@ -9,7 +9,7 @@ const SEARCH_INPUT = $(".js-search-input");
 
 function getDataFromApi(searchTerm, callback) {
   const query = {
-    limit: 10,
+    limit: 24,
     section: "food",
     near: searchTerm,
     venuePhotos: 1,
