@@ -37,11 +37,13 @@ function getVenueResults(data) {
     }
 
     const venueInfo = $.getJSON(foursquareVenueUrl, query, renderResult).fail(renderError);
+    console.log(venueInfo);
   });
 }
 
 function emptyValue() {
-  SEARCH_INPUT.addClass("error").after(
+  SEARCH_INPUT.addClass("error");
+  $(".js-search-form-input-container").after(
     `<p class="search-form__error-message js-input-error">Search box can't be empty.</p>
     `
   );
@@ -76,11 +78,20 @@ function renderResult(venueData) {
   const venuePhoto = `${responsePath.bestPhoto.prefix}500x500${responsePath.bestPhoto.suffix}`;
   const venueName = responsePath.name;
   const venueLink = responsePath.canonicalUrl;
+  const venueCategory = responsePath.categories[0].name;
+  const venueStreet = responsePath.location.address;
+  const venueCity = responsePath.location.city;
 
   const venueResults = (
-    ` <li>
+    ` <li class="search-results__result">
+        <img class="search-results__photo" src="${venuePhoto}" alt="${venueName}" />
         <a class="search-results__link" href="${venueLink}" target="_blank">
-          <img class="search-results__photo" src="${venuePhoto}" alt="${venueName}" />
+          <h3 class="search-results__name">${venueName}</h3>
+          <h4>${venueCategory}</h4>
+          <address>
+            ${venueStreet}<br>
+            ${venueCity}
+          </address>
         </a>
       </li>
     `
