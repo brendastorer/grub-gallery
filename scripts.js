@@ -42,7 +42,6 @@ function getVenueResults(data) {
     }
 
     const venueInfo = $.getJSON(foursquareVenueUrl, query, renderResult).fail(renderError);
-    console.log(venueInfo);
   });
 }
 
@@ -97,6 +96,7 @@ function renderResult(venueData) {
             ${venueStreet}<br>
             ${venueCity}
           </address>
+          <h5 class="search-results__cta">See details on Foursquare &raquo;</h5>
         </a>
       </li>
     `

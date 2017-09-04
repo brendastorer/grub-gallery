@@ -1,5 +1,5 @@
 /* COLORS CHEAT SHEET
-  primary accent: rgb(22, 160, 133)
+  primary accent: rgb(0, 133, 106)
   secondary accent: rgb(241, 196, 15)
   error color: rgb(231, 76, 60)
   background: rgb(47, 44, 45);
@@ -12,16 +12,6 @@
        url("fonts/Lorano/Lorano-Heavy.woff") format("woff"), /* Modern Browsers */
        url("fonts/Lorano/Lorano-Heavy.ttf") format("truetype"), /* Safari, Android, iOS */
        url("fonts/Lorano/Lorano-Heavy.svg#Lorano-Heavy") format("svg"); /* Legacy iOS */
-  font-style: normal;
-  font-weight: normal;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: "Modigirl Sans";
-  src: url("fonts/Modigirl/ModigirlSans.eot"); /* IE9 Compat Modes */
-  src: url("fonts/Modigirl/ModigirlSans.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("fonts/Modigirl/ModigirlSans.woff") format("woff"); /* Modern Browsers */
   font-style: normal;
   font-weight: normal;
   text-rendering: optimizeLegibility;
@@ -42,13 +32,18 @@ body {
 }
 
 a {
-  color: rgb(22, 160, 133);
+  color: rgb(0, 133, 106);
   text-decoration: none;
 }
 
 a:focus,
 a:hover {
   text-decoration: underline;
+}
+
+img {
+  height: auto;
+  width: 100%;
 }
 
 label {
@@ -79,7 +74,7 @@ input[type="text"]:focus {
 }
 
 button {
-  background-color: rgb(22, 160, 133);
+  background-color: rgb(0, 133, 106);
   border: 0;
   border-radius: 9999px;
   color: white;
@@ -110,13 +105,6 @@ h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 1rem;
 }
 
-h1 {
-  font-family: "Modigirl Sans", georgia, serif;
-  font-size: 2.6rem;
-  letter-spacing: 0.01em;
-  line-height: 1;
-}
-
 h2 {
   font-size: 1.2rem;
 }
@@ -126,33 +114,37 @@ p {
 }
 
 .site-header {
-  padding: 1rem;
-}
-
-@media only screen and (min-width: 500px) {
-  .site-header {
-    display: flex;
-    justify-content: space-between;
-    text-align: right;
-  }
+  padding: 2rem 1rem;
+  text-align: center;
 }
 
 .site-header__logo {
-  height: auto;
-  margin-bottom: 3rem;
-  margin-right: 2rem;
+  display: block;
+  margin-bottom: 0.25rem;
+  margin-left: auto;
+  margin-right: auto;
+  -ms-transform: rotate(-5deg);
+  -webkit-transform: rotate(-5deg);
   transform: rotate(-5deg);
-  width: 100%;
 }
 
 @media only screen and (min-width: 500px) {
   .site-header__logo {
-    width: auto;
+    width: 550px;
   }
 }
 
 .site-header__headline {
-  margin-top: 25px;
+  -ms-transform: rotate(-7deg);
+  -webkit-transform: rotate(-7deg);
+  transform: rotate(-7deg);
+  width: 80%;
+}
+
+@media only screen and (min-width: 500px) {
+  .site-header__headline {
+    width: 440px;
+  }
 }
 
 .search-form {
@@ -168,12 +160,14 @@ p {
 
 @media only screen and (min-width: 700px) {
   .search-form__input-container {
+    display: -webkit-flex;
     display: flex;
   }
 }
 
 @media only screen and (min-width: 700px) {
   .search-form__input {
+    -webkit-flex: auto;
     flex: auto;
     margin-left: -0.5rem;
     margin-right: 0.5rem;
@@ -186,6 +180,7 @@ p {
 
 @media only screen and (min-width: 700px) {
   .search-form__button {
+    -webkit-flex: initial;
     flex: initial;
     margin-left: 0.5rem;
     margin-top: 0;
@@ -202,7 +197,9 @@ p {
 }
 
 .search-results {
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-top: 1rem;
   padding: 5px;
@@ -247,7 +244,11 @@ p {
   }
 }
 
-.search-results__result:focus .search-results__link,
+.search-results__link:focus {
+  opacity: 1;
+  outline: none;
+}
+
 .search-results__result:hover .search-results__link {
   opacity: 1;
 }
@@ -258,7 +259,7 @@ p {
 }
 
 .search-results__link {
-  background-color: rgba(22, 160, 133, 0.9);
+  background-color: rgba(0, 133, 106, 0.9);
   color: rgb(242, 240, 236);
   display: block;
   opacity: 0;
@@ -288,6 +289,11 @@ p {
 .search-results__photo {
   height: auto;
   width: 100%;
+}
+
+.search-results__cta {
+  font-size: 0.8rem;
+  margin-top: 1rem;
 }
 
 .search-form__error-message {
