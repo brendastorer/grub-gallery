@@ -98,7 +98,7 @@ function renderResult(venueData) {
   const venueListItemStart = (
     ` <li class="search-results__result">
         <img class="search-results__photo" src="${venuePhoto}" alt="${venueName}" />
-        <a class="search-results__link" href="${venueLink}" target="_blank">
+        <a class="search-results__link" href="${venueLink}" target="_blank" rel="noopener noreferrer">
           <h3 class="search-results__name">${venueName}</h3>
           <h4>${venueCategory}</h4>
     `

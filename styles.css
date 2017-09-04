@@ -24,21 +24,24 @@ html {
 
 body {
   background-image: url("images/chalkboard-bg.jpg");
-  background-attachment: fixed;
   color: rgba(242, 240, 236, 0.9);
   font-family: "Lorano Heavy", helvetica, sans-serif;
   letter-spacing: 0.05em;
   line-height: 1.4;
+  min-height: 100vh;
+  position: relative;
 }
 
 a {
-  color: rgb(0, 133, 106);
+  border-bottom: 2px dotted transparent;
+  color: rgb(241, 196, 15);
+  display: inline-block;
   text-decoration: none;
 }
 
 a:focus,
 a:hover {
-  text-decoration: underline;
+  border-bottom-color: rgba(242, 240, 236, 0.8);
 }
 
 img {
@@ -130,7 +133,7 @@ p {
 
 @media only screen and (min-width: 500px) {
   .site-header__logo {
-    width: 550px;
+    width: 520px;
   }
 }
 
@@ -143,7 +146,7 @@ p {
 
 @media only screen and (min-width: 500px) {
   .site-header__headline {
-    width: 440px;
+    width: 420px;
   }
 }
 
@@ -202,7 +205,7 @@ p {
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-top: 1rem;
-  padding: 5px;
+  padding: 5px 5px 50px;
 }
 
 @supports (display: grid) {
@@ -210,7 +213,7 @@ p {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    padding: 10px;
+    padding: 10px 10px 50px;
   }
 }
 
@@ -260,6 +263,7 @@ p {
 
 .search-results__link {
   background-color: rgba(0, 133, 106, 0.9);
+  border-bottom: 0;
   color: rgb(242, 240, 236);
   display: block;
   opacity: 0;
@@ -313,4 +317,13 @@ p {
   border-radius: 5px;
   padding: 1rem 1rem 0;
   text-align: center;
+}
+
+.site-footer {
+  font-size: 0.8rem;
+  margin: 1rem;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
 }
