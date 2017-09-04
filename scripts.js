@@ -83,24 +83,48 @@ function renderResult(venueData) {
   const venueName = responsePath.name;
   const venueLink = responsePath.canonicalUrl;
   const venueCategory = responsePath.categories[0].name;
-  const venueStreet = responsePath.location.address;
-  const venueCity = responsePath.location.city;
+  let venueStreet = responsePath.location.address;
+  let venueCity = responsePath.location.city;
+  let venueResults = "";
 
-  const venueResults = (
+  if (venueStreet == undefined) {
+    venueStreet = "";
+  }
+
+  if (venueCity == undefined) {
+    venueCity = "";
+  }
+
+  const venueListItemStart = (
     ` <li class="search-results__result">
         <img class="search-results__photo" src="${venuePhoto}" alt="${venueName}" />
         <a class="search-results__link" href="${venueLink}" target="_blank">
           <h3 class="search-results__name">${venueName}</h3>
           <h4>${venueCategory}</h4>
-          <address>
-            ${venueStreet}<br>
-            ${venueCity}
-          </address>
-          <h5 class="search-results__cta">See details on Foursquare &raquo;</h5>
+    `
+  );
+
+  const venueAddress = (
+    ` <address>
+        ${venueStreet}<br>
+        ${venueCity}
+      </address>
+    `
+  );
+
+  const venueListItemEnd = (
+    `    <h5 class="search-results__cta">See details on Foursquare &raquo;</h5>
         </a>
       </li>
     `
   );
+
+  if (venueStreet == "" && venueCity == "") {
+    venueResults = venueListItemStart + venueListItemEnd;
+  }
+  else {
+    venueResults = venueListItemStart + venueAddress + venueListItemEnd;
+  }
 
   RESULTS_CONTAINER.append(venueResults);
 }
