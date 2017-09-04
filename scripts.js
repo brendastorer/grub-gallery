@@ -48,7 +48,7 @@ function getVenueResults(data) {
 function emptyValue() {
   SEARCH_INPUT.addClass("error");
   $(".js-search-form-input-container").after(
-    `<p class="search-form__error-message js-input-error">Search box can't be empty.</p>
+    `<p class="error-message js-input-error">Search box can't be empty.</p>
     `
   );
 }

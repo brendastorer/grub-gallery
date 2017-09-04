@@ -3,6 +3,7 @@
   secondary accent: rgb(241, 196, 15)
   error color: rgb(231, 76, 60)
   background: rgb(47, 44, 45);
+  text: rgb(242, 240, 236);
 */
 
 @font-face {
@@ -17,14 +18,20 @@
   text-rendering: optimizeLegibility;
 }
 
+/* DEFAULTS */
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   background-color: rgb(47, 44, 45);
-  font-size: 14px;
+  font-size: 13px;
 }
 
 body {
   background-image: url("images/chalkboard-bg.jpg");
-  color: rgba(242, 240, 236, 0.9);
+  color: rgb(242, 240, 236);
   font-family: "Lorano Heavy", helvetica, sans-serif;
   letter-spacing: 0.05em;
   line-height: 1.4;
@@ -116,6 +123,8 @@ p {
   font-size: 0.8rem;
 }
 
+/* COMPONENTS */
+
 .site-header {
   padding: 2rem 1rem;
   text-align: center;
@@ -131,7 +140,7 @@ p {
   transform: rotate(-5deg);
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 530px) {
   .site-header__logo {
     width: 520px;
   }
@@ -144,7 +153,7 @@ p {
   width: 80%;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 530px) {
   .site-header__headline {
     width: 420px;
   }
@@ -300,12 +309,31 @@ p {
   margin-top: 1rem;
 }
 
-.search-form__error-message {
+.site-footer {
+  font-size: 0.8rem;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* ERRORS */
+
+.error-message {
   background-color: rgba(231, 76, 60, 0.8);
   border-radius: 5px;
   display: inline-block;
   margin-top: 1rem;
   padding: 0.4em 0.75em 0.2em;
+  text-align: center;
+}
+
+/* Show message to upgrade on older browsers */
+@supports (display: block) {
+  .browser-notice {
+    display: none;
+  }
 }
 
 .search-form__input.error {
@@ -317,13 +345,4 @@ p {
   border-radius: 5px;
   padding: 1rem 1rem 0;
   text-align: center;
-}
-
-.site-footer {
-  font-size: 0.8rem;
-  margin: 1rem;
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
 }
