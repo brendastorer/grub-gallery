@@ -87,11 +87,11 @@ function renderResult(venueData) {
   let venueCity = responsePath.location.city;
   let venueResults = "";
 
-  if (venueStreet == undefined) {
+  if (venueStreet === undefined) {
     venueStreet = "";
   }
 
-  if (venueCity == undefined) {
+  if (venueCity === undefined) {
     venueCity = "";
   }
 
@@ -119,7 +119,7 @@ function renderResult(venueData) {
     `
   );
 
-  if (venueStreet == "" && venueCity == "") {
+  if (venueStreet === "" && venueCity === "") {
     venueResults = venueListItemStart + venueListItemEnd;
   }
   else {
@@ -143,7 +143,7 @@ function watchSubmit() {
     const queryTarget = $(event.currentTarget).find(SEARCH_INPUT);
     const query = queryTarget.val();
 
-    if (query == "") {
+    if (query === "") {
       emptyValue();
     }
     else {
